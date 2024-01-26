@@ -1,1 +1,10 @@
-<p>item-list works!</p>
+<h1>Lista de Itens</h1>
+<ul>
+  <li *ngFor="let item of items">
+    {{item.id}} - {{item.name}}
+  </li>
+</ul>
+<form>
+  <input type="text" [(ngModel)]="newItemName" name="newItemName" placeholder="Digite o nome do novo item">
+  <button type="button" (click)="addItem()">Adicionar</button>
+</form>
