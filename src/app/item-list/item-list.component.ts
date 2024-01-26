@@ -1,4 +1,5 @@
 import { Component } from '@angular/core';
+import { v4 as uuidv4 } from 'uuid';
 
 @Component({
   selector: 'app-item-list',
@@ -7,9 +8,9 @@ import { Component } from '@angular/core';
 })
 export class ItemListComponent {
   items = [
-    { id: 1, name: 'Item 1' },
-    { id: 2, name: 'Item 2' },
-    { id: 3, name: 'Item 3' }
+    { id: uuidv4(), name: 'Item 1' },
+    { id: uuidv4(), name: 'Item 2' },
+    { id: uuidv4(), name: 'Item 3' }
   ];
 
   newItemName = '';
@@ -18,7 +19,7 @@ export class ItemListComponent {
   addItem() {
     if (this.newItemName) {
       const newItem = {
-        id: this.items.length + 1,
+        id: uuidv4(),
         name: this.newItemName
       };
       this.items.push(newItem);

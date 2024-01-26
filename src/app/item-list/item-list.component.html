@@ -1,14 +1,39 @@
-<h1>Lista de Itens</h1>
-<ul>
-  <li *ngFor="let item of items">
-    {{item.id}} - {{item.name}}
-    <button (click)="editItem(item)">Editar</button>
-    <button (click)="removeItem(item)">Remover</button>
-  </li>
-</ul>
-<form>
-  <input type="text" [(ngModel)]="newItemName" name="newItemName" placeholder="Digite o nome do novo item">
-  <button type="button" (click)="selectedItem ? updateItem() : addItem()">
-    {{selectedItem ? 'Atualizar' : 'Adicionar'}}
-  </button>
-</form>
+<div class="container mx-auto w-1/2">
+  <h1 class="text-3xl py-8">Lista de Itens</h1>
+
+  <table class="table-auto mx-auto w-full">
+    <thead>
+      <tr class="text-lg text-center">
+        <th class="w-1/2">ID</th>
+        <th class="w-1/4">Nome</th>
+        <th class="w-1/4">Actions</th>
+      </tr>
+    </thead>
+    <tbody>
+      <tr class="text-base" *ngFor="let item of items">
+        <td>{{item.id}}</td>
+        <td>{{item.name}}</td>
+        <td class="text-center my-2">
+          <button class="bg-blue-500 text-white p-2 mr-2" (click)="editItem(item)">
+            <i class="fas fa-pencil-alt"></i>
+          </button>
+          <button class="bg-red-500 text-white p-2" (click)="removeItem(item)">
+            <i class="fas fa-trash-alt"></i>
+          </button>
+        </td>
+      </tr>
+    </tbody>
+  </table>
+
+  <form class="flex justify-between mt-16">
+    <input class="w-3/4 px-4 py-px border border-slate-300" type="text" [(ngModel)]="newItemName" name="newItemName"
+      placeholder="Digite o nome do novo item">
+    <div class="w-1/4 text-center">
+      <button class="bg-blue-500 hover:bg-blue-600 text-white p-3 m-2" type="button"
+        (click)="selectedItem ? updateItem() : addItem()" [attr.aria-label]="selectedItem ? 'Atualizar' : 'Adicionar'"
+        [attr.title]="selectedItem ? 'Atualizar' : 'Adicionar'">
+        <i class="fas {{selectedItem ? 'fa-sync' : 'fa-plus'}}"></i>
+      </button>
+    </div>
+  </form>
+</div>
