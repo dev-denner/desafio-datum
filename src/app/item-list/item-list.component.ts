@@ -13,6 +13,7 @@ export class ItemListComponent {
   ];
 
   newItemName = '';
+  selectedItem: any;
 
   addItem() {
     if (this.newItemName) {
@@ -21,6 +22,24 @@ export class ItemListComponent {
         name: this.newItemName
       };
       this.items.push(newItem);
+      this.newItemName = '';
+    }
+  }
+
+  removeItem(item: any) {
+    const index = this.items.indexOf(item);
+    this.items.splice(index, 1);
+  }
+
+  editItem(item: any) {
+    this.selectedItem = item;
+    this.newItemName = item.name;
+  }
+
+  updateItem() {
+    if (this.newItemName) {
+      this.selectedItem.name = this.newItemName;
+      this.selectedItem = null;
       this.newItemName = '';
     }
   }
